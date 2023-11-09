@@ -26,8 +26,8 @@ function summElementsWorker(arr) {
         }
     }
     return sum;
-console.log(sumIgnoringNegatives([10, 10, 11, 20, 10]));
-console.log(sumIgnoringNegatives([0, 0, 0, -1, -100]));
+console.log(summElementsWorker()); // 0
+console.log(summElementsWorker(10, 10, 11, 20, 10)); // 61
 }
 
 function differenceMaxMinWorker(arr) {
