@@ -172,7 +172,6 @@ class PrintEditionItem {
     }
   }
   
-  // Тестовый сценарий
   const library = new Library("Библиотека имени Ленина");
   
   library.addBook(
@@ -209,3 +208,62 @@ class PrintEditionItem {
   console.log("Состояние книги 'Пикник на обочине' после восстановления: " + bookToDamage.state);
   
   library.addBook(bookToDamage); 
+
+
+
+
+
+
+
+
+
+
+
+  class Student {
+    constructor(name) {
+      this.name = name;
+      this.marks = {};
+    }
+  
+    addMark(mark, subject) {
+      if (mark < 2 || mark > 5) {
+        return;
+      }
+  
+      if (!this.marks.hasOwnProperty(subject)) {
+        this.marks[subject] = [];
+      }
+  
+      this.marks[subject].push(mark);
+    }
+  
+    getAverageBySubject(subject) {
+      if (!this.marks.hasOwnProperty(subject)) {
+        return 0;
+      }
+  
+      const marks = this.marks[subject];
+      const sum = marks.reduce((acc, curr) => acc + curr, 0);
+      const average = sum / marks.length;
+      return average;
+    }
+  
+    getAverage() {
+      const subjects = Object.keys(this.marks);
+      const totalMarks = subjects.reduce((acc, subject) => {
+        const average = this.getAverageBySubject(subject);
+        return acc + average;
+      }, 0);
+      const overallAverage = totalMarks / subjects.length;
+      return overallAverage;
+    }
+  }
+  
+  const averagePhysics = student.getAverageBySubject("физика");
+  console.log(`Средний балл по предмету физика: ${averagePhysics}`);
+  
+  const averageBiology = student.getAverageBySubject("биология");
+  console.log(`Средний балл по предмету биология: ${averageBiology}`);
+  
+  const overallAverage = student.getAverage();
+  console.log(`Средний балл по всем предметам: ${overallAverage}`);
