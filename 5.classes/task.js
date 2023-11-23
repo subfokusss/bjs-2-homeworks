@@ -134,44 +134,6 @@ class PrintEditionItem {
     }
   }
   
-  class Book {
-    constructor(author, title, releaseDate, pageCount) {
-      this.author = author;
-      this.title = title;
-      this.releaseDate = releaseDate;
-      this.pageCount = pageCount;
-      this.state = 100;
-    }
-  }
-  
-  class DetectiveBook extends Book {
-    constructor(author, title, releaseDate, pageCount) {
-      super(author, title, releaseDate, pageCount);
-      this.genre = "Детектив";
-    }
-  }
-  
-  class FantasticBook extends Book {
-    constructor(author, title, releaseDate, pageCount) {
-      super(author, title, releaseDate, pageCount);
-      this.genre = "Фантастика";
-    }
-  }
-  
-  class NovelBook extends Book {
-    constructor(author, title, releaseDate, pageCount) {
-      super(author, title, releaseDate, pageCount);
-      this.genre = "Роман";
-    }
-  }
-  
-  class Magazine extends Book {
-    constructor(title, releaseDate, pageCount) {
-      super(null, title, releaseDate, pageCount);
-      this.genre = "Журнал";
-    }
-  }
-  
   const library = new Library("Библиотека имени Ленина");
   
   library.addBook(
@@ -250,14 +212,26 @@ class PrintEditionItem {
   
     getAverage() {
       const subjects = Object.keys(this.marks);
+      if(subjects.length === 0) {
+        return 0;
+      }
+  
       const totalMarks = subjects.reduce((acc, subject) => {
         const average = this.getAverageBySubject(subject);
         return acc + average;
       }, 0);
       const overallAverage = totalMarks / subjects.length;
-      return overallAverage;
+      return overallAverage || 0;
     }
   }
+  
+  const student = new Student("John");
+  
+  student.addMark(4, "физика");
+  student.addMark(3, "физика");
+  student.addMark(5, "биология");
+  student.addMark(4, "биология");
+  student.addMark(5, "математика");
   
   const averagePhysics = student.getAverageBySubject("физика");
   console.log(`Средний балл по предмету физика: ${averagePhysics}`);
@@ -267,3 +241,5 @@ class PrintEditionItem {
   
   const overallAverage = student.getAverage();
   console.log(`Средний балл по всем предметам: ${overallAverage}`);
+  
+  
