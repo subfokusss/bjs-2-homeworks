@@ -105,9 +105,9 @@ class PrintEditionItem {
     addBook(book) {
       if (book.state > 30) {
         this.books.push(book);
-        console.log(`Книга "${book.title}" успешно добавлена в библиотеку.`);
+        console.log(`Книга "${book.name}" успешно добавлена в библиотеку.`);
       } else {
-        console.log(`Книга "${book.title}" не может быть добавлена в библиотеку из-за низкого состояния.`);
+        console.log(`Книга "${book.name}" не может быть добавлена в библиотеку из-за низкого состояния.`);
       }
     }
   
@@ -125,7 +125,7 @@ class PrintEditionItem {
         if (this.books[i].title === bookName) {
           const book = this.books[i];
           this.books.splice(i, 1);
-          console.log(`Книга "${book.title}" успешно выдана читателю.`);
+          console.log(`Книга "${book.name}" успешно выдана читателю.`);
           return book;
         }
       }
@@ -155,8 +155,8 @@ class PrintEditionItem {
   library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
   library.addBook(new Magazine("Мурзилка", 1924, 60));
   
-  console.log(library.findBookBy("title", "Властелин колец")); 
-  console.log(library.findBookBy("releaseDate", 1924).title); 
+  console.log(library.findBookBy("name", "Властелин колец")); 
+  console.log(library.findBookBy("releaseDate", 1924).name); 
   
   console.log("Количество книг до выдачи: " + library.books.length);
   library.giveBookByName("Машина времени");
